@@ -23,7 +23,7 @@ with(household, {
     plot(DateTime, Sub_metering_1, type = "l", ylab = "Energy sub metering", xlab = "")
     lines(DateTime, Sub_metering_2, col = "red")
     lines(DateTime, Sub_metering_3, col = "blue")
-    legend("topright", lty = 1, col = c("black", "red", "blue"), legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), bty = "n")
+    legend("topright", lty = 1, col = c("black", "red", "blue"), legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), bty = "n", cex = 0.75)
   })
   plot(DateTime, Global_reactive_power_kw, type = "l", xlab = "datetime")
 })
