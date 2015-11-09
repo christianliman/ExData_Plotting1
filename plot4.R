@@ -6,12 +6,18 @@ household$Date <- as.Date(household$Date, "%d/%m/%Y")
 household1 <- household[household$Date == as.Date("1/2/2007", "%d/%m/%Y"),]
 household2 <- household[household$Date == as.Date("2/2/2007", "%d/%m/%Y"),]
 household <- rbind(household1, household2)
+
+household$Global_active_power <- as.numeric(as.character(household$Global_active_power))
+household$Sub_metering_1 <- as.numeric(as.character(household$Sub_metering_1))
+household$Sub_metering_2 <- as.numeric(as.character(household$Sub_metering_2))
+household$Sub_metering_3 <- as.numeric(as.character(household$Sub_metering_3))
 remove(household1, household2)
 
-household$Global_active_power_kw <- as.numeric(household$Global_active_power)/500
+
+household$Global_active_power_kw <- household$Global_active_power/500
 household$DateTime <- paste(household$Date, household$Time)
 household$DateTime <- strptime(household$DateTime, "%Y-%m-%d %H:%M:%S")
-household$Global_reactive_power_kw <- as.numeric(household$Global_reactive_power)/500
+household$Global_reactive_power_kw <- as.numeric(as.character(household$Global_reactive_power))/500
 
 # Creating the plot and saving it to a png file
 
@@ -20,7 +26,7 @@ par(mfrow = c(2, 2))
 
 with(household, {
   plot(DateTime, Global_active_power_kw, type = "l", xlab = "", ylab = "Global Active Power")
-  plot(DateTime, Voltage, type = "l", xlab = "datetime")
+  plot(DateTime, as.numeric(as.character(Voltage)), type = "l", xlab = "datetime", ylab = "Voltage")
   with(household, {
     plot(DateTime, Sub_metering_1, type = "l", ylab = "Energy sub metering", xlab = "")
     lines(DateTime, Sub_metering_2, col = "red")

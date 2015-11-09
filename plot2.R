@@ -8,7 +8,7 @@ household2 <- household[household$Date == as.Date("2/2/2007", "%d/%m/%Y"),]
 household <- rbind(household1, household2)
 remove(household1, household2)
 
-household$Global_active_power <- as.numeric(household$Global_active_power)
+household$Global_active_power <- as.numeric(as.character(household$Global_active_power))
 household$Global_active_power_kw <- household$Global_active_power/500
 household$DateTime <- paste(household$Date, household$Time)
 household$DateTime <- strptime(household$DateTime, "%Y-%m-%d %H:%M:%S")
